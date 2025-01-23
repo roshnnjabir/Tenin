@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenin - Luxury Bedsheets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.png' )}}">
+</head>
+<!-- Add this header section before your existing content -->
+<header class="header">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="logo" href="/">Tenin</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('shop') }}">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/collections">Collections</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="header-cta">
+                    <form class="search-form">
+                        <input type="search" class="search-input" placeholder="Search...">
+                    </form>
+                    <a href="/cart" class="cart-button">
+                        <i class="fas fa-shopping-cart"></i>
+                        Cart (0)
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<!-- Theme Toggle Button -->
+<button class="theme-toggle" onclick="toggleTheme()">
+    <i class="fas fa-sun"></i>
+</button>
+
+<script>// Theme toggle functionality with localStorage
+    function initializeTheme() {
+        // Check if theme is stored in localStorage
+        const storedTheme = localStorage.getItem('theme');
+        const html = document.documentElement;
+        const themeIcon = document.querySelector('.theme-toggle i');
+        
+        if (storedTheme) {
+            // Apply stored theme
+            html.setAttribute('data-theme', storedTheme);
+            // Update icon based on stored theme
+            if (storedTheme === 'light') {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        } else {
+            // Set default theme if none stored
+            html.setAttribute('data-theme', 'dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+            localStorage.setItem('theme', 'dark');
+        }
+    }
+    
+    function toggleTheme() {
+        const html = document.documentElement;
+        const themeIcon = document.querySelector('.theme-toggle i');
+        const currentTheme = html.getAttribute('data-theme');
+        
+        // Toggle theme
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        // Update DOM
+        html.setAttribute('data-theme', newTheme);
+        
+        // Update icon
+        if (newTheme === 'light') {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        } else {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+        
+        // Save to localStorage
+        localStorage.setItem('theme', newTheme);
+    }
+    
+    // Header scroll effect
+    function handleScroll() {
+        const header = document.querySelector('.header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }
+    
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        initializeTheme();
+        window.addEventListener('scroll', handleScroll);
+    });
+</script>
+
+
+<body>
+    <!-- Rest of the HTML remains the same -->
+    <!-- Platform Introduction -->
+    <section class="platform-intro-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 order-md-2">
+                    <img src="{{ url_for('static', filename='images/bedroom.jpg') }}" alt="Tenin Luxury Bedsheets" class="img-fluid">
+                </div>
+                <div class="col-md-6 order-md-1">
+                    <h2 class="section-title text-start">Discover Tenin</h2>
+                    <p class="lead mb-4">
+                        Tenin brings you the epitome of luxury bedding. Our premium Egyptian cotton sheets are crafted with meticulous attention to detail, ensuring the perfect blend of comfort and elegance. Experience the luxury of hotel-quality bedding in your own home.
+                    </p>
+                    <a href="/shop" class="discover-button">Explore Collection</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="featured" class="featured-section">
+        <div class="container">
+            <h2 class="section-title">Featured Collections</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="featured-card">
+                        <img src="{{ url_for('static', filename='images/interior-hotel-residential-black-furniture_1203-5583.jpg') }}" alt="Collection" class="img-fluid">
+                        <div class="p-4">
+                            <h3 class="h4 mb-3">Luxury Collection</h3>
+                            <p>1000 thread count Egyptian cotton sheets for ultimate comfort.</p>
+                            <a href="/shop/luxury" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="featured-card">
+                        <img src="{{ url_for('static', filename='images/high-angle-cozy-bed-arrangement.jpg') }}" alt="Premium Collection" class="img-fluid">
+                        <div class="p-4">
+                            <h3 class="h4 mb-3">Premium Collection</h3>
+                            <p>Sateen weave sheets for a silky smooth feel and elegant drape.</p>
+                            <a href="/shop/premium" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="featured-card">
+                        <img src="{{ url_for('static', filename='images/bedsheetstack.png') }}" alt="Collection" class="img-fluid">
+                        <div class="p-4">
+                            <h3 class="h4 mb-3">Classic Collection</h3>
+                            <p>Percale weave sheets for a crisp, cool sleeping experience.</p>
+                            <a href="/shop/classic" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collections -->
+    <section id="collections" class="collection-section">
+        <div class="container">
+            <h2 class="section-title">Shop By Category</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="collection-card">
+                        <img src="{{ url_for('static', filename='images/sheetsets.png') }}" alt="Sheet Sets" class="img-fluid">
+                        <div class="collection-overlay">
+                            <h3>Sheet Sets</h3>
+                            <a href="/shop/sheets" class="btn btn-primary">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="collection-card">
+                        <img src="{{ url_for('static', filename='images/duvetcovers.png') }}" alt="Duvet Covers" class="img-fluid">
+                        <div class="collection-overlay">
+                            <h3>Duvet Covers</h3>
+                            <a href="/shop/duvets" class="btn btn-primary">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="collection-card">
+                        <img src="{{ url_for('static', filename='images/pillow.png') }}" alt="Pillowcases" class="img-fluid">
+                        <div class="collection-overlay">
+                            <h3>Pillowcases</h3>
+                            <a href="/shop/pillowcases" class="btn btn-primary">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Guarantees -->
+    <section class="services-section py-md-5">
+        <div class="container">
+            <h2 class="section-title">Why Choose Tenin</h2>
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <div class="service-item">
+                        <i class="service-icon fas fa-shipping-fast"></i>
+                        <h4>Free Shipping</h4>
+                        <p>On all orders above $200</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="service-item">
+                        <i class="service-icon fas fa-certificate"></i>
+                        <h4>Premium Quality</h4>
+                        <p>100% Egyptian Cotton</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="service-item">
+                        <i class="service-icon fas fa-exchange-alt"></i>
+                        <h4>Easy Returns</h4>
+                        <p>30-day return policy</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="service-item">
+                        <i class="service-icon fas fa-headset"></i>
+                        <h4>Expert Support</h4>
+                        <p>24/7 customer service</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
