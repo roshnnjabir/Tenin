@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenin - Product Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/productpage.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.png') }}">
+</head>
+<!-- Header (from your home page) -->
+<header class="header">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="logo" href="/">Tenin</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <script>// Theme toggle functionality with localStorage
+                function initializeTheme() {
+                    // Check if theme is stored in localStorage
+                    const storedTheme = localStorage.getItem('theme');
+                    const html = document.documentElement;
+                    const themeIcon = document.querySelector('.theme-toggle i');
+                    
+                    if (storedTheme) {
+                        // Apply stored theme
+                        html.setAttribute('data-theme', storedTheme);
+                        // Update icon based on stored theme
+                        if (storedTheme === 'light') {
+                            themeIcon.classList.remove('fa-sun');
+                            themeIcon.classList.add('fa-moon');
+                        } else {
+                            themeIcon.classList.remove('fa-moon');
+                            themeIcon.classList.add('fa-sun');
+                        }
+                    } else {
+                        // Set default theme if none stored
+                        html.setAttribute('data-theme', 'dark');
+                        themeIcon.classList.remove('fa-moon');
+                        themeIcon.classList.add('fa-sun');
+                        localStorage.setItem('theme', 'dark');
+                    }
+                }
+                
+                function toggleTheme() {
+                    const html = document.documentElement;
+                    const themeIcon = document.querySelector('.theme-toggle i');
+                    const currentTheme = html.getAttribute('data-theme');
+                    
+                    // Toggle theme
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    
+                    // Update DOM
+                    html.setAttribute('data-theme', newTheme);
+                    
+                    // Update icon
+                    if (newTheme === 'light') {
+                        themeIcon.classList.remove('fa-sun');
+                        themeIcon.classList.add('fa-moon');
+                    } else {
+                        themeIcon.classList.remove('fa-moon');
+                        themeIcon.classList.add('fa-sun');
+                    }
+                    
+                    // Save to localStorage
+                    localStorage.setItem('theme', newTheme);
+                }
+                
+                // Header scroll effect
+                function handleScroll() {
+                    const header = document.querySelector('.header');
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                }
+                
+                // Initialize when DOM is loaded
+                document.addEventListener('DOMContentLoaded', () => {
+                    initializeTheme();
+                    window.addEventListener('scroll', handleScroll);
+                });
+            </script>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('shop') }}">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/collections">Collections</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="header-cta">
+                    <form class="search-form">
+                        <input type="search" class="search-input" placeholder="Search...">
+                    </form>
+                    <a href="/cart" class="cart-button">
+                        <i class="fas fa-shopping-cart"></i>
+                        Cart (0)
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-sun"></i>
+    </button>
+
+    <!-- Product Section -->
+    <section class="product-detail-section container py-5">
+        <div class="row">
+            <div class="col-md-6 product-gallery">
+                <div class="main-image-container">
+                    <button class="gallery-arrow left-arrow">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <img src="{{ url_for('static', filename='images/bedroom.jpg') }}" alt="Premium Bedsheet" class="main-image img-fluid">
+                    <button class="gallery-arrow right-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="product-thumbnails mt-3">
+                    <div class="row g-2">
+                        <div class="col-2"><img src="{{ url_for('static', filename='images/bedroom.jpg') }}" alt="Thumbnail 1" class="img-fluid product-thumbnail active"></div>
+                        <div class="col-2"><img src="{{ url_for('static', filename='images/pillow.png') }}" alt="Thumbnail 2" class="img-fluid product-thumbnail"></div>
+                        <div class="col-2"><img src="{{ url_for('static', filename='images/sheetsets.png') }}" alt="Thumbnail 3" class="img-fluid product-thumbnail"></div>
+                        <div class="col-2"><img src="{{ url_for('static', filename='images/duvetcovers.png') }}" alt="Thumbnail 4" class="img-fluid product-thumbnail"></div>
+                        <div class="col-2"><img src="{{ url_for('static', filename='images/favicon.png') }}" alt="Thumbnail 5" class="img-fluid product-thumbnail"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 product-info">
+                <h1 class="product-title">Premium Egyptian Cotton Bedsheet</h1>
+                <p class="product-description lead">Immerse yourself in unparalleled opulence with Tenin's Premium Egyptian Cotton Bedsheet. Crafted from the finest 100% Egyptian cotton, this exquisite bedsheet offers a sublime blend of sumptuous softness and enduring elegance.</p>
+                <div class="product-price h3 my-4">$129.99</div>
+                
+                <div class="product-options mb-4">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="size" class="form-label">Size</label>
+                            <select class="form-select" id="size">
+                                <option>Queen</option>
+                                <option>King</option>
+                                <option>California King</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="color" class="form-label">Color</label>
+                            <select class="form-select" id="color">
+                                <option>Ivory</option>
+                                <option>Cream</option>
+                                <option>Sand</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-actions">
+                    <button class="btn btn-primary w-100 py-3">Add to Cart</button>
+                </div>
+                
+                <div class="product-features mt-5">
+                    <div class="row text-center">
+                        <div class="col-3">
+                            <div class="feature-icon"><i class="fas fa-leaf text-gold"></i></div>
+                            <div class="feature-text">100% Cotton</div>
+                        </div>
+                        <div class="col-3">
+                            <div class="feature-icon"><i class="fas fa-layer-group text-gold"></i></div>
+                            <div class="feature-text">800+ Thread</div>
+                        </div>
+                        <div class="col-3">
+                            <div class="feature-icon"><i class="fas fa-globe text-gold"></i></div>
+                            <div class="feature-text">Eco-Friendly</div>
+                        </div>
+                        <div class="col-3">
+                            <div class="feature-icon"><i class="fas fa-wind text-gold"></i></div>
+                            <div class="feature-text">Hypoallergenic</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% include 'footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Use your existing theme toggle and gallery script from the home page
+        document.addEventListener('DOMContentLoaded', function() {
+            const thumbnails = document.querySelectorAll('.product-thumbnail');
+            const mainImage = document.querySelector('.main-image');
+            const leftArrow = document.querySelector('.left-arrow');
+            const rightArrow = document.querySelector('.right-arrow');
+
+            const images = [
+                "{{ url_for('static', filename='images/bedroom.jpg') }}",
+                "{{ url_for('static', filename='images/pillow.png') }}",
+                "{{ url_for('static', filename='images/sheetsets.png') }}",
+                "{{ url_for('static', filename='images/duvetcovers.png') }}",
+                "{{ url_for('static', filename='images/favicon.png') }}",
+            ];
+            let currentIndex = 0;
+
+            // Thumbnail and Arrow Navigation Script (Same as before)
+            thumbnails.forEach((thumbnail, index) => {
+                thumbnail.addEventListener('click', function() {
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    mainImage.src = this.src;
+                    currentIndex = index;
+                });
+            });
+
+            leftArrow.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                updateImage();
+            });
+
+            rightArrow.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % images.length;
+                updateImage();
+            });
+
+            function updateImage() {
+                mainImage.src = images[currentIndex];
+                thumbnails.forEach(t => t.classList.remove('active'));
+                thumbnails[currentIndex].classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

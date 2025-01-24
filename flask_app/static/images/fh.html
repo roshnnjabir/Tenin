@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Watch Product Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .product-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .image-gallery {
+            position: relative;
+        }
+
+        .main-image-container {
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .main-image-container:hover {
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .main-image:hover {
+            transform: scale(1.15);
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.8);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .arrow:hover {
+            background: rgba(255,255,255,0.9);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .left-arrow {
+            left: 10px;
+        }
+
+        .right-arrow {
+            right: 10px;
+        }
+
+        .thumbnail-section {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            height: 100px;
+        }
+
+        .thumbnail {
+            width: calc(20% - 0.8rem);
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+
+        .thumbnail:hover, .thumbnail.active {
+            opacity: 1;
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Rest of the previous styles remain the same */
+
+.product-details {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.product-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.price {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.add-to-cart {
+    background-color: #050505;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+}
+
+.add-to-cart:hover {
+    background-color: #202020;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+}
+
+.feature {
+    text-align: center;
+}
+
+.feature-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.unit {
+    font-size: 0.9rem;
+    color: #666;
+    margin-left: 0.25rem;
+}
+
+.feature-name {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 992px) {
+    .product-hero {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+<body>
+    <section class="product-hero">
+        <div class="image-gallery">
+            <div class="main-image-container">
+                <button class="arrow left-arrow">&#10094;</button>
+                <img src="bedroom.jpg" alt="Premium Bedsheet" class="main-image">
+                <button class="arrow right-arrow">&#10095;</button>
+            </div>
+            <div class="thumbnail-section">
+                <img src="bedroom.jpg" alt="Thumbnail 1" class="thumbnail active">
+                <img src="duvetcovers.png" alt="Thumbnail 2" class="thumbnail">
+                <img src="bedsheetstack.png" alt="Thumbnail 3" class="thumbnail">
+                <img src="pillow.png" alt="Thumbnail 4" class="thumbnail">
+                <img src="sheetsets.png" alt="Thumbnail 5" class="thumbnail">
+            </div>
+        </div>
+
+        <div class="product-details">
+            <h1 class="product-name">Premium Egyptian Cotton Bedsheet</h1>
+            <p>Immerse yourself in unparalleled opulence with Tenin's Premium Egyptian Cotton Bedsheet. Crafted from the finest 100% Egyptian cotton, this exquisite bedsheet offers a sublime blend of sumptuous softness and enduring elegance. The meticulously high thread count creates a lavish, silky texture that envelopes you in comfort, promising a sleep experience befitting royalty. Available in a palette of sophisticated hues, Tenin's Premium Egyptian Cotton Bedsheet transforms your bedroom into a sanctuary of refined taste and luxury, all at an irresistible price.</p>
+            <p class="price">$129.99</p>
+            <button class="add-to-cart">Add To Cart</button>
+            
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-value">🧶</div>
+                    <div class="feature-name">100% Egyptian Cotton</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-value">🧵</div>
+                    <div class="feature-name">800+ Thread Count</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-value">🌍</div>
+                    <div class="feature-name">Eco-Friendly</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-value">🛌</div>
+                    <div class="feature-name">Hypoallergenic for Sensitive Skin</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            const mainImage = document.querySelector('.main-image');
+            const leftArrow = document.querySelector('.left-arrow');
+            const rightArrow = document.querySelector('.right-arrow');
+
+            const images = [
+                "bedroom.jpg",
+                "duvetcovers.png",
+                "bedsheetstack.png",
+                "pillow.png",
+                "sheetsets.png",
+            ];
+            let currentIndex = 0;
+
+            // Thumbnail click functionality
+            thumbnails.forEach((thumbnail, index) => {
+                thumbnail.addEventListener('click', function() {
+                    // Remove active class from all thumbnails
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked thumbnail
+                    this.classList.add('active');
+                    
+                    // Change main image
+                    mainImage.src = this.src;
+                    currentIndex = index;
+                });
+            });
+
+            // Arrow navigation functionality
+            leftArrow.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                updateImage();
+            });
+
+            rightArrow.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % images.length;
+                updateImage();
+            });
+
+            function updateImage() {
+                mainImage.src = images[currentIndex];
+                
+                // Update active thumbnail
+                thumbnails.forEach(t => t.classList.remove('active'));
+                thumbnails[currentIndex].classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
